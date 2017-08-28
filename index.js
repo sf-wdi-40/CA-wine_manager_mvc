@@ -7,6 +7,11 @@ const request = require("request-promise");
 //Configure our app to use EJS templating
 app.set("view engine", "ejs");
 
+//Configure body parser to extract data from forms (and AJAX requests)
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 //Tell express where to find the static assets served by OUR server (AKA not a CDN)
 app.use(express.static("./assets"));
 
@@ -25,6 +30,26 @@ app.get("/wines", (req, res) => {
         res.render("index", {
             wines: wineData
         });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
+app.post("/wines", (req, res) => {
+    //Step 1: Process POST request to API with req.body.wine as data object
+
+    //Step 2: On success, redirect back to wines page
+        //res.redirect("/wines");
+
+    request({
+        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines",
+        method: "POST",
+        body: req.body.wine,
+        json: true
+    })
+    .then(() => {
+        res.redirect("/wines");
     })
     .catch((err) => {
         console.log(err);
