@@ -80,6 +80,21 @@ app.get("/wines/:id/edit", (req, res) => {
     });
 });
 
+app.put("/wines/:id", (req, res) => {
+    request({
+        method: "PUT",
+        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id,
+        body: req.body.wine,
+        json: true
+    })
+    .then(() => {
+        res.redirect("/wines");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
 app.listen(3000, () => {
     console.log("Server started on port 3000...");
 });
