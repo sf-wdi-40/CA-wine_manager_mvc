@@ -17,17 +17,18 @@ app.get("/wines", (req, res) => {
 
     request({
         uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines",
-        method: "GET"
+        method: "GET",
+        json: true
     })
-    .then((data) => {
-        console.log(data);
+    .then((wineData) => {
+        //Render the index.ejs template from the "views" folder with the data from the API
+        res.render("index", {
+            wines: wineData
+        });
     })
     .catch((err) => {
         console.log(err);
     });
-
-    //Render the index.ejs template from the "views" folder
-    res.render("index");
 });
 
 app.listen(3000, () => {
