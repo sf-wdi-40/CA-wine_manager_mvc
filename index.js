@@ -95,6 +95,19 @@ app.put("/wines/:id", (req, res) => {
     });
 });
 
+app.delete("/wines/:id", (req, res) => {
+    request({
+        method: "DELETE",
+        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id
+    })
+    .then(() => {
+        res.redirect("/wines");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
 app.listen(3000, () => {
     console.log("Server started on port 3000...");
 });
