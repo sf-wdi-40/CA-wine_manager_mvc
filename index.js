@@ -40,73 +40,73 @@ app.use(express.static("./assets"));
 //     });
 // });
 
-app.post("/wines", (req, res) => {
+// app.post("/wines", (req, res) => {
     //Step 1: Process POST request to API with req.body.wine as data object
 
     //Step 2: On success, redirect back to wines page
         //res.redirect("/wines");
 
-    request({
-        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines",
-        method: "POST",
-        body: req.body.wine,
-        json: true
-    })
-    .then(() => {
-        res.redirect("/wines");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
+//     request({
+//         uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines",
+//         method: "POST",
+//         body: req.body.wine,
+//         json: true
+//     })
+//     .then(() => {
+//         res.redirect("/wines");
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// });
 
-app.get("/wines/:id/edit", (req, res) => {
+// app.get("/wines/:id/edit", (req, res) => {
     //Step 1: Perform cURL GET request to API using the ID from the route parameter
 
     //Step 2: Render edit.ejs with information coming back from the API
 
-    request({
-        method: "GET",
-        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id,
-        json: true
-    })
-    .then((wineData) => {
-        res.render("edit", {
-            wine: wineData
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
+//     request({
+//         method: "GET",
+//         uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id,
+//         json: true
+//     })
+//     .then((wineData) => {
+//         res.render("edit", {
+//             wine: wineData
+//         });
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// });
 
-app.put("/wines/:id", (req, res) => {
-    request({
-        method: "PUT",
-        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id,
-        body: req.body.wine,
-        json: true
-    })
-    .then(() => {
-        res.redirect("/wines");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
+// app.put("/wines/:id", (req, res) => {
+//     request({
+//         method: "PUT",
+//         uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id,
+//         body: req.body.wine,
+//         json: true
+//     })
+//     .then(() => {
+//         res.redirect("/wines");
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// });
 
-app.delete("/wines/:id", (req, res) => {
-    request({
-        method: "DELETE",
-        uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id
-    })
-    .then(() => {
-        res.redirect("/wines");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
+// app.delete("/wines/:id", (req, res) => {
+//     request({
+//         method: "DELETE",
+//         uri: "http://myapi-profstream.herokuapp.com/api/d3397e/wines/" + req.params.id
+//     })
+//     .then(() => {
+//         res.redirect("/wines");
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// });
 
 //Insert all of our routing into the application-level middleware
 app.use(require("./resources"));
