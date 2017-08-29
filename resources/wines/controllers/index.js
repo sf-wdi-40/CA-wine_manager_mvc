@@ -1,4 +1,4 @@
-const request = require("request-promise");
+// const request = require("request-promise");
 const Wine = require("../../../models/wine");
 
 module.exports = (req, res) => {
