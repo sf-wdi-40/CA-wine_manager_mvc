@@ -108,6 +108,9 @@ app.delete("/wines/:id", (req, res) => {
     });
 });
 
+//Insert all of our routing into the application-level middleware
+app.use(require("./resources"));
+
 app.listen(3000, () => {
     console.log("Server started on port 3000...");
 });
